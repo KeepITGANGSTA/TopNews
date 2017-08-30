@@ -1,7 +1,11 @@
 package com.bwie.topnews;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.kson.slidingmenu.SlidingMenu;
+import com.kson.slidingmenu.app.SlidingFragmentActivity;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -9,88 +13,115 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import adapter.NewsAdapter;
 import api.NewsAPI;
 import bean.NewsBean;
+import bean.TypeBean;
+import fragment.MenuLeftFragment;
 import utils.ParseUtils;
+import view.HorizontalScrol;
 import view.xlistview.XListView;
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity implements XListView.IXListViewListener{
+public class MainActivity extends SlidingFragmentActivity {
 
-    @ViewInject(R.id.mXListView) XListView mXListView;
+    @ViewInject(R.id.horizontalScrol) HorizontalScrol horizontalScrol;
     private NewsAdapter newsAdapter;
+    private List<Fragment> fragments=new ArrayList<>();
+    private List<TypeBean> types=new ArrayList<>();
     private List<NewsBean> list;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
-
         x.view().inject(this);
-        mXListView.setPullRefreshEnable(true);
-        mXListView.setPullLoadEnable(true);
-        mXListView.setXListViewListener(this);
-
-        getData();
+        initMenu();
+        initData();
     }
 
     /**
-     * 获取数据
+     * 初始化数据
      */
-    private void getData() {
-        final RequestParams requestParams=new RequestParams(NewsAPI.NEWS_URL);
-        requestParams.addBodyParameter("type",NewsAPI.TYPE);
-        requestParams.addBodyParameter("key",NewsAPI.KEY);
-        x.http().post(requestParams, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                System.out.println("json=="+result);
-                list= ParseUtils.parseJson(result);
-            }
+    private void initData() {
+        TypeBean tj=new TypeBean();
+        tj.type="推荐";
+        tj.type_id="top";
+        types.add(tj);
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+        TypeBean sh=new TypeBean();
+        sh.type="社会";
+        sh.type_id="shehui";
+        types.add(sh);
 
-            }
+        TypeBean gj=new TypeBean();
+        gj.type="国际";
+        gj.type_id="guoji";
+        types.add(gj);
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+        TypeBean gn=new TypeBean();
+        gn.type="国内";
+        gn.type_id="guonei";
+        types.add(gn);
 
-            }
+        TypeBean yl=new TypeBean();
+        yl.type="娱乐";
+        yl.type_id="yule";
+        types.add(yl);
 
-            @Override
-            public void onFinished() {
-                setAdapter();
-            }
-        });
+        TypeBean ty=new TypeBean();
+        ty.type="体育";
+        ty.type_id="tiyu";
+        types.add(ty);
 
+        TypeBean js=new TypeBean();
+        js.type="军事";
+        js.type_id="junshi";
+        types.add(js);
+
+        TypeBean kj=new TypeBean();
+        kj.type="科技";
+        kj.type_id="keji";
+        types.add(kj);
+
+        TypeBean cj=new TypeBean();
+        cj.type="财经";
+        cj.type_id="caijing";
+        types.add(cj);
+
+        TypeBean ssh=new TypeBean();
+        ssh.type="时尚";
+        ssh.type_id="shishang";
+        types.add(ssh);
+        horizontalScrol.loadData(types,getSupportFragmentManager());
     }
 
     /**
-     * 适配
+     * 设置侧滑菜单
      */
-    private void setAdapter(){
-        if (newsAdapter==null){
-            newsAdapter = new NewsAdapter(MainActivity.this,list);
-            mXListView.setAdapter(newsAdapter);
-        }else {
-            newsAdapter.notifyDataSetChanged();
-        }
-        mXListView.stopLoadMore();
-        mXListView.stopRefresh();
+    private void initMenu() {
+        //设置做布局
+        setBehindContentView(R.layout.left_menu_content);
+        getSupportFragmentManager().beginTransaction().replace(R.id.left_menu_content,new MenuLeftFragment()).commit();
+        //侧滑属性
+        SlidingMenu slidingMenu = getSlidingMenu();
+        slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        slidingMenu.setBehindOffsetRes(R.dimen.BehindOffsetRes);
+        slidingMenu.setFadeDegree(0.35f);
+
+        //右菜单
+        slidingMenu.setSecondaryMenu(R.layout.right_menu_content);
+        getSupportFragmentManager().beginTransaction().replace(R.id.right_menu_content,new MenuLeftFragment()).commit();
     }
 
 
-    @Override
-    public void onRefresh() {
-        setAdapter();
-    }
 
-    @Override
-    public void onLoadMore() {
-        setAdapter();
-    }
+
+
+
+
 }

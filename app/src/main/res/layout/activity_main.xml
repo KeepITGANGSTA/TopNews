@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bwie.topnews.MainActivity">
 
-    <view.xlistview.XListView
-        android:id="@+id/mXListView"
+    <include
+        android:id="@+id/head_"
+        layout="@layout/head"/>
+    <view.HorizontalScrol
+        android:id="@+id/horizontalScrol"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></view.xlistview.XListView>
+        android:layout_height="match_parent">
+    </view.HorizontalScrol>
 
-</RelativeLayout>
+</LinearLayout>

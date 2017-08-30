@@ -15,6 +15,7 @@ import bean.NewsBean;
 public class ParseUtils {
     private static List<NewsBean> list=new ArrayList<>();
     public static List<NewsBean> parseJson(String json){
+        list.clear();
         Gson gson=new Gson();
         GsonBean gsonBean = gson.fromJson(json, GsonBean.class);
         GsonBean.ResultBean result1 = gsonBean.result;
