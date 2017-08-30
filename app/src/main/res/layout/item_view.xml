@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/tv_one_titile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:id="@+id/iv_one"
+        android:scaleType="centerCrop"
+        android:layout_width="350dp"
+        android:layout_height="150dp" />
+
+</LinearLayout>
