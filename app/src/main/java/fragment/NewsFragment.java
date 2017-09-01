@@ -21,6 +21,7 @@ import java.util.List;
 import adapter.NewsAdapter;
 import api.NewsAPI;
 import bean.NewsBean;
+import utils.NewsMore;
 import utils.ParseUtils;
 import view.xlistview.XListView;
 
@@ -35,6 +36,7 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
     private List<NewsBean> list;
     @ViewInject(R.id.mXListView)XListView mXListView;
     private String type;
+    private String mType=null;
 
     @Nullable
     @Override
@@ -50,10 +52,21 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
         super.onActivityCreated(savedInstanceState);
 
         type = getArguments().getString("type");
+        mType=type;
+        if (mType!=null && !mType.equals(type)){
+            mXListView.setPullRefreshEnable(true);
+            mXListView.setPullLoadEnable(true);
+            mXListView.setXListViewListener(this);
+            getData();
+        }
         mXListView.setPullRefreshEnable(true);
         mXListView.setPullLoadEnable(true);
         mXListView.setXListViewListener(this);
         getData();
+
+
+
+
     }
 
     /**
@@ -61,13 +74,14 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
      */
     private void getData() {
         final RequestParams requestParams=new RequestParams(NewsAPI.NEWS_URL);
-        requestParams.addBodyParameter("type",type);
+        requestParams.addBodyParameter("type",mType);
         requestParams.addBodyParameter("key",NewsAPI.KEY);
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 System.out.println("json=="+result);
-                list= ParseUtils.parseJson(result);
+
+                list= ParseUtils.parseJson(result,mType);
             }
 
             @Override
@@ -109,6 +123,20 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
 
     @Override
     public void onLoadMore() {
-        setAdapter();
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                String json=NewsMore.getdfs(type);
+                list=ParseUtils.parseMore(json);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setAdapter();
+                    }
+                });
+            }
+        }.start();
     }
 }

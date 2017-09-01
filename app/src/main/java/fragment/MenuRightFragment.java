@@ -19,7 +19,7 @@ public class MenuRightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mRootView==null){
-            mRootView=inflater.inflate(R.layout.left_menu_layout,container,false);
+            mRootView=inflater.inflate(R.layout.right_menu_layout,container,false);
         }
         return mRootView;
     }

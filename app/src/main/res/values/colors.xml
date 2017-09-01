@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="selected">#ffff4444</color>
     <color name="normal">#000000</color>
+    <color name="LeftHeadColor">#505050</color>
 </resources>

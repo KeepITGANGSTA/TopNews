@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <HorizontalScrollView
+        android:scrollbars="none"
         android:id="@+id/mScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

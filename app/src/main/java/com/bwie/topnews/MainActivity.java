@@ -3,6 +3,8 @@ package com.bwie.topnews;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.kson.slidingmenu.SlidingMenu;
 import com.kson.slidingmenu.app.SlidingFragmentActivity;
@@ -21,26 +23,36 @@ import api.NewsAPI;
 import bean.NewsBean;
 import bean.TypeBean;
 import fragment.MenuLeftFragment;
+import fragment.MenuRightFragment;
 import utils.ParseUtils;
 import view.HorizontalScrol;
 import view.xlistview.XListView;
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
 
+    @ViewInject(R.id.left_iv) ImageView left_iv;
+    @ViewInject(R.id.right_iv) ImageView right_iv;
     @ViewInject(R.id.horizontalScrol) HorizontalScrol horizontalScrol;
     private NewsAdapter newsAdapter;
     private List<Fragment> fragments=new ArrayList<>();
     private List<TypeBean> types=new ArrayList<>();
     private List<NewsBean> list;
+    private SlidingMenu slidingMenu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         x.view().inject(this);
+        initView();
         initMenu();
         initData();
+    }
+
+    private void initView() {
+        left_iv.setOnClickListener(this);
+        right_iv.setOnClickListener(this);
     }
 
     /**
@@ -107,7 +119,7 @@ public class MainActivity extends SlidingFragmentActivity {
         setBehindContentView(R.layout.left_menu_content);
         getSupportFragmentManager().beginTransaction().replace(R.id.left_menu_content,new MenuLeftFragment()).commit();
         //侧滑属性
-        SlidingMenu slidingMenu = getSlidingMenu();
+        slidingMenu = getSlidingMenu();
         slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         slidingMenu.setBehindOffsetRes(R.dimen.BehindOffsetRes);
@@ -115,13 +127,19 @@ public class MainActivity extends SlidingFragmentActivity {
 
         //右菜单
         slidingMenu.setSecondaryMenu(R.layout.right_menu_content);
-        getSupportFragmentManager().beginTransaction().replace(R.id.right_menu_content,new MenuLeftFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.right_menu_content,new MenuRightFragment()).commit();
     }
 
-
-
-
-
-
-
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id){
+            case R.id.left_iv:
+                slidingMenu.showMenu();
+                break;
+            case R.id.right_iv:
+                slidingMenu.showSecondaryMenu();
+                break;
+        }
+    }
 }

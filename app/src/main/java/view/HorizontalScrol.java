@@ -37,7 +37,6 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
     private HorizontalScrollView horizontalScrollView;
     private LinearLayout lin_type;
     private List<TypeBean> typeList;
-    private List<Fragment> fragList;
     private List<TextView> topList=new ArrayList<>();
     private FragmentManager fragmentManager;
     private ViewPagerAdapter viewPagerAdapter;
@@ -155,7 +154,6 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
     /**

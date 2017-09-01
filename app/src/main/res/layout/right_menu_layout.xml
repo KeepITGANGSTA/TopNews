@@ -1,10 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="右菜单"
-        android:id="@+id/tv_rght"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:layout_height="match_parent"
+    android:background="#f4f5f6">
+    <RelativeLayout
+        android:padding="15dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:src="@mipmap/rightback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:text="设置"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="330dp">
+
+        <RelativeLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="清除缓存"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#666666"
+                android:layout_alignParentRight="true"
+                android:text="7.67MB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="#f4f5f6"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"/>
+        <RelativeLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="字体大小"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#666666"
+                android:layout_alignParentRight="true"
+                android:text="中"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="#f4f5f6"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"/>
+        <RelativeLayout
+            android:paddingLeft="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+           >
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="列表显示摘要"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/rightoff"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="#f4f5f6"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"/>
+        <RelativeLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="非WIFI网络流量"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#666666"
+                android:layout_alignParentRight="true"
+                android:text="极省流量(不下载图)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>        <View
+        android:background="#f4f5f6"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"/>
+        <RelativeLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="非WIFI网络播放提醒"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#666666"
+                android:layout_alignParentRight="true"
+                android:text="提醒一次"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="#f4f5f6"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"/>
+        <RelativeLayout
+            android:paddingLeft="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            >
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="推送通知"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/on"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+
+        <RelativeLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            >
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="离线下载"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/list"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="#f4f5f6"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"/>
+        <RelativeLayout
+            android:padding="15dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            >
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="检查版本"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="75dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/reddots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#666666"
+                android:layout_alignParentRight="true"
+                android:text="6.3.2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
 </LinearLayout>
