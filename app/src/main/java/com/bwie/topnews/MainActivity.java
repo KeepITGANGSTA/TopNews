@@ -1,5 +1,6 @@
 package com.bwie.topnews;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 
 import com.kson.slidingmenu.SlidingMenu;
 import com.kson.slidingmenu.app.SlidingFragmentActivity;
+import com.umeng.socialize.UMShareAPI;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -141,5 +143,17 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
                 slidingMenu.showSecondaryMenu();
                 break;
         }
+    }
+
+    /**
+     * 有盟复写onActivityResult
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }

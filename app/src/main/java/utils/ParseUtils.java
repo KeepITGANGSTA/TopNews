@@ -58,5 +58,4 @@ public class ParseUtils {
         }
         return list;
     }
-
 }

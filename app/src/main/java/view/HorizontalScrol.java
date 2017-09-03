@@ -178,6 +178,10 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
         public int getCount() {
             return typeList.size();
         }
+
+
     }
+
+
 
 }
