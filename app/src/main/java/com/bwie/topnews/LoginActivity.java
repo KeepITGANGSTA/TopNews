@@ -194,6 +194,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ,umAuthListener);
                 break;
             case R.id.login_ivWeiBo:
+                Toast.makeText(this, "微博登录", Toast.LENGTH_SHORT).show();
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.SINA, umAuthListener);
+
                 break;
             case R.id.login_ivKn:
                 break;
@@ -216,7 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String name = map.get("name");
             String gender=map.get("gender");
             String iconurl = map.get("iconurl");
-            Toast.makeText(LoginActivity.this, name+","+gender, Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, name+","+gender+"sdfsd", Toast.LENGTH_SHORT).show();
         }
 
         @Override
