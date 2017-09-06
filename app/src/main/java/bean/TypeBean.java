@@ -7,4 +7,5 @@ package bean;
 public class TypeBean {
     public String type;
     public String type_id;
+    public boolean isChecked;
 }

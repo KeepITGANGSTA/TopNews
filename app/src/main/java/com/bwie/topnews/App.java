@@ -13,6 +13,8 @@ import com.umeng.socialize.UMShareAPI;
 import org.xutils.x;
 
 import api.NewsAPI;
+import cn.jpush.android.api.JPushInterface;
+import utils.SharedPreferencesUtil;
 
 /**
  * Created by 李英杰 on 2017/8/30.
@@ -35,6 +37,9 @@ public class App extends Application {
         initXUtils();
         MobSDK.init(this, NewsAPI.AppKey,NewsAPI.AppSecret);
         UMShareAPI.get(this);
+        SharedPreferencesUtil.putPreferences("state","best");
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
     }
 

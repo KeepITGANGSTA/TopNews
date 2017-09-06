@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.kson.slidingmenu.SlidingMenu;
@@ -31,7 +32,7 @@ import view.HorizontalScrol;
 import view.xlistview.XListView;
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @ViewInject(R.id.left_iv) ImageView left_iv;
     @ViewInject(R.id.right_iv) ImageView right_iv;
@@ -42,10 +43,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     private List<NewsBean> list;
     private SlidingMenu slidingMenu;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         x.view().inject(this);
         initView();
         initMenu();
@@ -117,19 +120,22 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
      * 设置侧滑菜单
      */
     private void initMenu() {
-        //设置做布局
-        setBehindContentView(R.layout.left_menu_content);
-        getSupportFragmentManager().beginTransaction().replace(R.id.left_menu_content,new MenuLeftFragment()).commit();
+        slidingMenu = new SlidingMenu(this);
         //侧滑属性
-        slidingMenu = getSlidingMenu();
+        // slidingMenu = getSlidingMenu();
         slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         slidingMenu.setBehindOffsetRes(R.dimen.BehindOffsetRes);
         slidingMenu.setFadeDegree(0.35f);
+        //设置做布局
+        slidingMenu.setMenu(R.layout.left_menu_content);
+       // setBehindContentView(R.layout.left_menu_content);
+        getSupportFragmentManager().beginTransaction().replace(R.id.left_menu_content,new MenuLeftFragment()).commit();
 
         //右菜单
         slidingMenu.setSecondaryMenu(R.layout.right_menu_content);
         getSupportFragmentManager().beginTransaction().replace(R.id.right_menu_content,new MenuRightFragment()).commit();
+        slidingMenu.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
     }
 
     @Override

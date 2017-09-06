@@ -5,5 +5,18 @@
     <color name="colorAccent">#FF4081</color>
     <color name="selected">#ffff4444</color>
     <color name="normal">#000000</color>
+    <color name="Recycler_Click">#f4f5f6</color>
+    <color name="Recycler_Normal">#ffffff</color>
+
+
+    <color name="LineRelaColor">#ffffff</color>
+    <color name="TextColor">#000000</color>
+    <color name="TextInfo">#999999</color>
     <color name="LeftHeadColor">#505050</color>
+    <color name="RootLRColor">#f4f5f6</color>
+    <color name="ViewLine">#f4f5f6</color>
+    <color name="BtnMoreLogin">#454545</color>
+    <color name="JianTouColor">#ffffff</color>
+    <color name="HeadColor">#ff0000</color>
+    <color name="SettingColorText">#666666</color>
 </resources>

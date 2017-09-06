@@ -1,11 +1,13 @@
 package fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bwie.topnews.MainActivity;
 import com.bwie.topnews.R;
@@ -21,6 +23,8 @@ import java.util.List;
 import adapter.NewsAdapter;
 import api.NewsAPI;
 import bean.NewsBean;
+import dao.MyDao;
+import utils.NetUtils;
 import utils.NewsMore;
 import utils.ParseUtils;
 import view.xlistview.XListView;
@@ -36,13 +40,21 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
     private List<NewsBean> list;
     @ViewInject(R.id.mXListView)XListView mXListView;
     private String type;
-    private String mType=null;
+    private String mType="null";
+
+
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (RootView==null){
             RootView= x.view().inject(this,inflater,container);
+        }else {
+            ViewGroup viewGroup= (ViewGroup) RootView.getParent();
+            if (viewGroup!=null){
+                viewGroup.removeView(RootView);
+            }
         }
         return RootView;
     }
@@ -51,21 +63,47 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        type = getArguments().getString("type");
-        mType=type;
-        if (mType!=null && !mType.equals(type)){
-            mXListView.setPullRefreshEnable(true);
-            mXListView.setPullLoadEnable(true);
-            mXListView.setXListViewListener(this);
-            getData();
-        }
         mXListView.setPullRefreshEnable(true);
         mXListView.setPullLoadEnable(true);
         mXListView.setXListViewListener(this);
-        getData();
+        type = getArguments().getString("type");
+
+        new NetUtils(getContext(), new NetUtils.NetWork() {
+            @Override
+            public void NetWorkWifi() {
+                Toast.makeText(getContext(), "WiFi", Toast.LENGTH_SHORT).show();
+                if (mType.equals(type)){
+                    getData();
+                }else {
+                    getData();
+                }
+            }
+
+            @Override
+            public void NetWorkPhone() {
+                Toast.makeText(getContext(), "手机", Toast.LENGTH_SHORT).show();
+                if (mType.equals(type)){
+                    getData();
+                }else {
+                    getData();
+                }
+            }
+
+            @Override
+            public void NoneNetWork() {
+                Toast.makeText(getContext(), "网络不可用", Toast.LENGTH_SHORT).show();
+                String search = MyDao.getSingleton(getContext()).search(type);
+                list= ParseUtils.parseJson(search, type);
+                setAdapter();
+
+            }
+        });
 
 
 
+/*        if (mType!=null && !mType.equals(type)){
+
+        }*/
 
     }
 
@@ -128,7 +166,7 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
             @Override
             public void run() {
                 super.run();
-                String json=NewsMore.getdfs(type);
+                String json=NewsMore.getdfs(mType);
                 list=ParseUtils.parseMore(json);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override

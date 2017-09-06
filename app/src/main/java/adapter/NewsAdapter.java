@@ -14,6 +14,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 import bean.NewsBean;
+import utils.SharedPreferencesUtil;
 
 /**
  * Created by 李英杰 on 2017/8/30.
@@ -96,11 +97,25 @@ public class NewsAdapter extends BaseAdapter {
                     break;
             }
         }
-        NewsBean newsBean= (NewsBean) getItem(i);
+        final NewsBean newsBean= (NewsBean) getItem(i);
         switch (itemViewType){
             case ITEM_ONE:
                 holder.textView.setText(newsBean.title);
-                ImageLoader.getInstance().displayImage(newsBean.thumbnail_pic_s,holder.imageView);
+                //ImageLoader.getInstance().displayImage(newsBean.thumbnail_pic_s,holder.imageView);
+                String best = SharedPreferencesUtil.getPreferencesValue("state");
+                if (best.equals("best")){
+                    ImageLoader.getInstance().displayImage(newsBean.thumbnail_pic_s,holder.imageView);
+                }else if (best.equals("terrible")){
+                    final ViewHolder finalHolder = holder;
+                    holder.imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ImageLoader.getInstance().displayImage(newsBean.thumbnail_pic_s, finalHolder.imageView);
+                        }
+                    });
+                }
+
+
                 break;
             case ITEM_TWO:
                 holderTwo.textView_two.setText(newsBean.title);

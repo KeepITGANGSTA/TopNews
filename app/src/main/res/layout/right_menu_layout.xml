@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f4f5f6">
+    android:background="@color/RootLRColor">
     <RelativeLayout
         android:padding="15dp"
-        android:background="#ffffff"
+        android:background="@color/LineRelaColor"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:gravity="center_vertical">
@@ -14,6 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:textColor="@color/TextColor"
             android:textSize="20dp"
             android:layout_centerInParent="true"
             android:text="设置"
@@ -23,155 +24,181 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:background="@color/LineRelaColor"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="330dp">
 
         <RelativeLayout
+            android:id="@+id/rel_clearCache"
+            android:background="@color/LineRelaColor"
             android:padding="15dp"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center_vertical">
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:text="清除缓存"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:textColor="#666666"
+                android:id="@+id/tv_cache"
+                android:textColor="@color/SettingColorText"
                 android:layout_alignParentRight="true"
                 android:text="7.67MB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <View
-            android:background="#f4f5f6"
+            android:background="@color/ViewLine"
             android:layout_width="match_parent"
             android:layout_height="1sp"/>
         <RelativeLayout
+            android:background="@color/LineRelaColor"
             android:padding="15dp"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center_vertical">
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:text="字体大小"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:textColor="#666666"
+                android:textColor="@color/SettingColorText"
                 android:layout_alignParentRight="true"
                 android:text="中"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <View
-            android:background="#f4f5f6"
+            android:background="@color/ViewLine"
             android:layout_width="match_parent"
             android:layout_height="1sp"/>
         <RelativeLayout
+            android:background="@color/LineRelaColor"
             android:paddingLeft="15dp"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="55dp"
            >
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:layout_centerVertical="true"
                 android:text="列表显示摘要"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-            <ImageView
+            <Switch
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+<!--            <ImageView
                 android:layout_centerVertical="true"
                 android:src="@mipmap/rightoff"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
         </RelativeLayout>
         <View
-            android:background="#f4f5f6"
+            android:background="@color/ViewLine"
         android:layout_width="match_parent"
         android:layout_height="1sp"/>
         <RelativeLayout
+            android:id="@+id/rel_NoneNet"
+            android:background="@color/LineRelaColor"
             android:padding="15dp"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center_vertical">
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:text="非WIFI网络流量"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_feiwifi"
+                android:layout_alignBottom="@+id/tv_feiwifi"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
-                android:textColor="#666666"
+
+                android:textColor="@color/SettingColorText"
                 android:layout_alignParentRight="true"
                 android:text="极省流量(不下载图)"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_feiwifi" />
         </RelativeLayout>        <View
-        android:background="#f4f5f6"
+        android:background="@color/ViewLine"
         android:layout_width="match_parent"
         android:layout_height="1sp"/>
         <RelativeLayout
+            android:background="@color/LineRelaColor"
             android:padding="15dp"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center_vertical">
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:text="非WIFI网络播放提醒"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:textColor="#666666"
+                android:textColor="@color/SettingColorText"
                 android:layout_alignParentRight="true"
                 android:text="提醒一次"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <View
-            android:background="#f4f5f6"
+            android:background="@color/ViewLine"
         android:layout_width="match_parent"
         android:layout_height="1sp"/>
         <RelativeLayout
             android:paddingLeft="15dp"
-            android:background="#ffffff"
+            android:background="@color/LineRelaColor"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             >
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:layout_centerVertical="true"
                 android:text="推送通知"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <ImageView
+            <Switch
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+<!--            <ImageView
                 android:layout_centerVertical="true"
                 android:src="@mipmap/on"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:background="@color/LineRelaColor"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -179,12 +206,14 @@
 
         <RelativeLayout
             android:padding="15dp"
-            android:background="#ffffff"
+            android:background="@color/LineRelaColor"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             >
 
             <TextView
+                android:textColor="@color/TextColor"
+                android:id="@+id/tv_noneNetDownload"
                 android:layout_centerVertical="true"
                 android:text="离线下载"
                 android:textStyle="bold"
@@ -199,17 +228,18 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <View
-            android:background="#f4f5f6"
+            android:background="@color/ViewLine"
             android:layout_width="match_parent"
             android:layout_height="1sp"/>
         <RelativeLayout
             android:padding="15dp"
-            android:background="#ffffff"
+            android:background="@color/LineRelaColor"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             >
 
             <TextView
+                android:textColor="@color/TextColor"
                 android:layout_centerVertical="true"
                 android:text="检查版本"
                 android:textStyle="bold"
@@ -223,7 +253,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:textColor="#666666"
+                android:textColor="@color/SettingColorText"
                 android:layout_alignParentRight="true"
                 android:text="6.3.2"
                 android:layout_width="wrap_content"

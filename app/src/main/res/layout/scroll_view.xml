@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:background="@color/LineRelaColor"
             android:id="@+id/linearLayout_type"
             android:orientation="horizontal"
             android:layout_width="match_parent"

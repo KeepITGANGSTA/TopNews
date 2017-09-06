@@ -16,7 +16,7 @@ public class SQLdao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL("create table lixianLoad(name Text,json Text)");
     }
 
     @Override

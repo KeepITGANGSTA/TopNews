@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:background="@color/LineRelaColor">
 
     <TextView
+        android:textColor="@color/TextColor"
         android:textStyle="bold"
         android:id="@+id/tv_one_titile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <ImageView
+        android:src="@mipmap/ic_launcher_round"
         android:layout_marginTop="15dp"
         android:id="@+id/iv_one"
         android:scaleType="centerCrop"
