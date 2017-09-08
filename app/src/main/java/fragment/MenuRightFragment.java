@@ -11,16 +11,20 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bwie.topnews.App;
 import com.bwie.topnews.NoneNetDownloadActivity;
 import com.bwie.topnews.R;
 
 import org.w3c.dom.Text;
 
+import cn.jpush.android.api.JPushInterface;
 import dao.MyDao;
 import utils.SharedPreferencesUtil;
 
@@ -34,6 +38,7 @@ public class MenuRightFragment extends Fragment implements View.OnClickListener{
     private RelativeLayout relativeLayout;
     private RelativeLayout rel_clearCache;
     private TextView tv_cache;
+    private Switch switch_tuisong;
 
     @Nullable
     @Override
@@ -62,6 +67,19 @@ public class MenuRightFragment extends Fragment implements View.OnClickListener{
         relativeLayout.setOnClickListener(this);
         tv_cache = mRootView.findViewById(R.id.tv_cache);
         tv_cache.setOnClickListener(this);
+        switch_tuisong = mRootView.findViewById(R.id.switch_tuisong);
+        switch_tuisong.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    Toast.makeText(getContext(), "打开", Toast.LENGTH_SHORT).show();
+                    JPushInterface.resumePush(App.appContext);
+                }else {
+                    Toast.makeText(getContext(), "关闭", Toast.LENGTH_SHORT).show();
+                    JPushInterface.stopPush(App.appContext);
+                }
+            }
+        });
     }
 
     @Override

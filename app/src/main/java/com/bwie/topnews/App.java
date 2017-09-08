@@ -40,6 +40,8 @@ public class App extends Application {
         SharedPreferencesUtil.putPreferences("state","best");
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        String registrationID = JPushInterface.getRegistrationID(this);
+        System.out.println("registrationId==============="+registrationID);
 
     }
 

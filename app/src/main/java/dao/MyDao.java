@@ -46,6 +46,13 @@ public class MyDao {
         return null;
     }
 
+    //删除
+    public static void delete(String name){
+        SQLiteDatabase writableDatabase = sqLdao.getWritableDatabase();
+        writableDatabase.delete("lixianLoad","name=?",new String[]{name});
+        writableDatabase.close();
+    }
+
     //清空
     public static void clearCache(){
         SQLiteDatabase writableDatabase = sqLdao.getWritableDatabase();

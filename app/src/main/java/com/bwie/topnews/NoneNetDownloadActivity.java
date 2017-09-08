@@ -24,9 +24,11 @@ import adapter.RecyclerViewAdapter;
 import api.NewsAPI;
 import bean.TypeBean;
 import dao.MyDao;
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import utils.NetUtils;
 
-public class NoneNetDownloadActivity extends AppCompatActivity implements View.OnClickListener{
+public class NoneNetDownloadActivity extends SwipeBackActivity implements View.OnClickListener{
 
     private RecyclerView mRecyclerView;
     private List<TypeBean> list=new ArrayList<>();
@@ -40,7 +42,10 @@ public class NoneNetDownloadActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_none_net_download);
         initView();
         initData();
-
+        setSwipeBackEnable(true);
+        SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
+        swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        swipeBackLayout.setEdgeSize(300);
 
 
     }
@@ -175,6 +180,7 @@ public class NoneNetDownloadActivity extends AppCompatActivity implements View.O
 
                 break;
             case R.id.iv_SettingBack:
+
                 break;
         }
     }

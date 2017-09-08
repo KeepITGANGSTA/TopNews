@@ -14,9 +14,11 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.andy.library.ChannelActivity;
 import com.bwie.topnews.R;
 
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
     private List<TextView> topList=new ArrayList<>();
     private FragmentManager fragmentManager;
     private ViewPagerAdapter viewPagerAdapter;
+    private ImageView imageView;
 
     public HorizontalScrol(Context context) {
         super(context);
@@ -57,12 +60,19 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
         init(context,attrs);
     }
 
-    private void init(Context context,AttributeSet attributeSet){
+    private void init(final Context context, AttributeSet attributeSet){
         this.context=context;
         TypedArray typedArray=context.obtainStyledAttributes(attributeSet, R.styleable.HorizontalScrol);
         //size=typedArray.getDimensionPixelSize(R.styleable.HorizontalScrol_textSize,15);
         typedArray.recycle();
         View view= LayoutInflater.from(context).inflate(R.layout.scroll_view,this,true);
+/*        imageView = view.findViewById(R.id.iv_channel);
+        imageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChannelActivity.startChannelActivity(context,);
+            }
+        });*/
         mViewPager=view.findViewById(R.id.mViewPager);
         mViewPager.addOnPageChangeListener(this);
         horizontalScrollView=view.findViewById(R.id.mScroll);
@@ -75,7 +85,11 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
      *
      */
     public void loadData(List<TypeBean> list, FragmentManager fragmentManager){
+        lin_type.removeAllViews();
         this.typeList=list;
+        for (int i = 0; i < typeList.size(); i++) {
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+typeList.get(i).type_id);
+        }
         this.fragmentManager=fragmentManager;
         draw();
     }
@@ -170,6 +184,7 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
             Fragment fragment=new NewsFragment();
             Bundle bundle=new Bundle();
             bundle.putString("type",typeList.get(position).type_id);
+
             fragment.setArguments(bundle);
             return fragment;
         }
@@ -178,8 +193,6 @@ public class HorizontalScrol extends LinearLayout implements ViewPager.OnPageCha
         public int getCount() {
             return typeList.size();
         }
-
-
     }
 
 

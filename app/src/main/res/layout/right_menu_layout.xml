@@ -176,16 +176,21 @@
             >
 
             <TextView
-                android:textColor="@color/TextColor"
                 android:layout_centerVertical="true"
+                android:textColor="@color/TextColor"
                 android:text="推送通知"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <Switch
-                android:layout_centerVertical="true"
+                android:textOn="      "
+                android:textOff="     "
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track"
+                android:id="@+id/switch_tuisong"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 <!--            <ImageView

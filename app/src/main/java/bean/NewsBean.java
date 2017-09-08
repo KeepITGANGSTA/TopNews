@@ -9,4 +9,5 @@ public class NewsBean {
     public String thumbnail_pic_s;
     public String date;
     public String author_name;
+    public String url;
 }

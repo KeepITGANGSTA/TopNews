@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
@@ -69,6 +70,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(eh); //注销回调接口
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override
@@ -247,6 +253,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void initView() {
         login_ivBack = (ImageView) findViewById(R.id.login_ivBack);
+
         login_edPhone = (EditText) findViewById(R.id.login_edPhone);
         login_tvSend = (TextView) findViewById(R.id.login_tvSend);
         login_edVeriCode = (EditText) findViewById(R.id.login_edVeriCode);
